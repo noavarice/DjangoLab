@@ -4,4 +4,4 @@ from FileHandler.models import FileHandler
 class FileHandlerForm(ModelForm):
     class Meta:
         model = FileHandler
-        exclude = ['date']
+        fields = ['file_to_store']

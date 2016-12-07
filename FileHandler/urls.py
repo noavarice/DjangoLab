@@ -1,6 +1,7 @@
 from django.conf.urls import url
-from views import handle
+import views
 
 urlpatterns = [
-    url(r'^$', handle),
+    url(r'^$', views.handle),
+    url(r'success$', views.succeed),
 ]

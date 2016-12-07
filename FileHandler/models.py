@@ -7,4 +7,3 @@ from django.db import models
 
 class FileHandler(models.Model):
     file_to_store = models.FileField(upload_to=settings.MEDIA_ROOT)
-    date = models.DateTimeField()
