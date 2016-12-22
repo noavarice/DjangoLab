@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import FileHandlerForm
 from .models import FileHandler
+from django.conf import settings
 import string, random
 
 # Create your views here.
@@ -28,4 +29,9 @@ def download(request):
     url = request.path.split('/')
     unique_file_url = url[len(url) - 1]
     obj = get_object_or_404(FileHandler, pk = unique_file_url)
-    return render(request, 'FileHandler/download.html', { 'obj': obj })
+    return render(request, 'FileHandler/download.html', { 'url': unique_file_url, 'path': obj.file_to_store.name })
+
+def temporary_download_page(request):
+    response = HttpResponse()
+    response['Content-Disposition'] = 'attachment; %s' % request.path
+    return response    
