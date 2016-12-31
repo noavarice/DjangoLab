@@ -121,3 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = '/home/alexrazinkov/Projects/Python/Labs/Lab5/files/'
+
+CREATED_URL_MAX_LENGTH = 8
