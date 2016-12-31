@@ -7,6 +7,3 @@ from django.db import models
 
 class FileHandler(models.Model):
     file_to_store = models.FileField(upload_to=settings.MEDIA_ROOT)
-
-    def __str__(self):
-        return self.unique_url

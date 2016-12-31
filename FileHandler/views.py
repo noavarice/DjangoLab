@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import FileHandlerForm
 from .models import FileHandler
-from django.conf import settings
+import Lab5.settings
 import string, random
 from base62 import encode, decode
 from magic import from_file
@@ -31,7 +31,11 @@ def download(request):
 
 def temporary_download_page(request):
     response = HttpResponse()
+<<<<<<< HEAD
     full_filename = os.path.join(MEDIA_ROOT, request.path.split('/')[-1])
     response['Content-Type'] = from_file(full_filename, filename), mime = True)
     response['Content-Disposition'] = "attachment; filename='%s'" % full_filename
+=======
+    response['Content-Disposition'] = "attachment; filename='%s'" % MEDIA_ROOT + request.path
+>>>>>>> dd62bb8535351f8c318bbac60de993ae6e2cc340
     return response    
