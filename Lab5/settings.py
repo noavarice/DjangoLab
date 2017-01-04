@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -114,12 +114,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+# FileHandler app settings
+
+FILEHANDLER_DIR = os.path.join(BASE_DIR, 'FileHandler')
+
+ADVERTISING_ROOT = os.path.join(FILEHANDLER_DIR, 'templates/FileHandler/Advertising')
+
+CREATED_URL_MAX_LENGTH = 8
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/home/alexrazinkov/Projects/Python/Labs/Lab5/files/'
-
-CREATED_URL_MAX_LENGTH = 8
+STATICFILES_DIRS = (
+    ('advertising', ADVERTISING_ROOT),
+)

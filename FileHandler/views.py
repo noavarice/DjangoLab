@@ -1,10 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
-from .forms import FileHandlerForm
-from .models import FileHandler
+from django.shortcuts   import render, get_object_or_404
+from django.http        import HttpResponseRedirect, HttpResponse
+from forms              import FileHandlerForm
+from models             import FileHandler
+from base62             import encode, decode
 import Lab5.settings
 import string, random
-from base62 import encode, decode
 
 def upload(request):
     if request.method == 'POST':
@@ -17,16 +17,13 @@ def upload(request):
     return render(request, 'FileHandler/index.html', { 'form': form })
 
 def succeed(request):
-    url = request.path.split('/')
-    unique_file_url = url[len(url) - 1]
-    return render(request, 'FileHandler/successfully_uploaded.html', { 'address': unique_file_url })
+    return render(request, 'FileHandler/successfully_uploaded.html', { 'address': request.path.split('/')[-1]})
 
 def download(request):
-    url = request.path.split('/')
-    unique_file_url = url[len(url) - 1]
+    unique_file_url = request.path.split('/')[-1]
     obj = get_object_or_404(FileHandler, pk = decode(unique_file_url))
-    url = obj.file_to_store.name.split('/')
-    return render(request, 'FileHandler/download.html', { 'url': unique_file_url, 'path': url[len(url) - 1]})
+    filename = obj.file_to_store.name.split('/')[-1]
+    return render(request, 'FileHandler/downloading/download_layout.html', { 'url': unique_file_url, 'path': filename})
 
 def temporary_download_page(request):
     response = HttpResponse()
