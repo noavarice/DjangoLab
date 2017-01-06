@@ -23,11 +23,11 @@ def download(request):
     unique_file_url = request.path.split('/')[-1]
     obj = get_object_or_404(FileHandler, pk = decode(unique_file_url))
     filename = obj.file_to_store.name.split('/')[-1]
-    return render(request, 'FileHandler/downloading/download_layout.html', { 'url': unique_file_url, 'path': filename})
+    return render(request, 'FileHandler/download_layout.html', { 'url': unique_file_url, 'path': filename})
 
 def temporary_download_page(request):
     response = HttpResponse()
     full_filename = os.path.join(MEDIA_ROOT, request.path.split('/')[-1])
-    response['Content-Type'] = from_file(full_filename, filename), mime = True)
+    response['Content-Type'] = from_file((full_filename, filename), mime = True)
     response['Content-Disposition'] = "attachment; filename='%s'" % full_filename
     return response    
