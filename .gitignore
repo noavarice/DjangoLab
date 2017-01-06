@@ -39,3 +39,4 @@ Thumbs.db
 
 *.pyc
 files/*
+static/*
