@@ -3,7 +3,11 @@ from django.http        import HttpResponseRedirect, HttpResponse
 from forms              import FileHandlerForm
 from models             import FileHandler
 from base62             import encode, decode
-import Lab5.settings
+from magic              import from_file
+from Lab5.settings      import MEDIA_ROOT
+from django.utils.encoding import smart_str
+import os
+import urllib
 import string, random
 
 def upload(request):
@@ -23,11 +27,13 @@ def download(request):
     unique_file_url = request.path.split('/')[-1]
     obj = get_object_or_404(FileHandler, pk = decode(unique_file_url))
     filename = obj.file_to_store.name.split('/')[-1]
-    return render(request, 'FileHandler/download_layout.html', { 'url': unique_file_url, 'path': filename})
+    return render(request, 'FileHandler/download_layout.html', { 'url': unique_file_url, 'file_name': filename })
 
 def temporary_download_page(request):
-    response = HttpResponse()
-    full_filename = os.path.join(MEDIA_ROOT, request.path.split('/')[-1])
-    response['Content-Type'] = from_file((full_filename, filename), mime = True)
-    response['Content-Disposition'] = "attachment; filename='%s'" % full_filename
-    return response    
+    url = request.path.split('/')[-1]
+    obj = get_object_or_404(FileHandler, pk = decode(url))
+    full_filename = obj.file_to_store.name
+    with open(full_filename, 'rb') as f:
+        response = HttpResponse(f, content_type = 'application/force-download')
+        response['Content-Disposition'] = 'inline; filename="%s"' % os.path.basename(full_filename)
+        return response    
