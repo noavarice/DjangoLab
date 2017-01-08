@@ -127,11 +127,11 @@ CREATED_URL_MAX_LENGTH = 8
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATICFILES_DIRS = (
     ('advertising', ADVERTISING_ROOT),
-    ('downloading', os.path.join(FILEHANDLER_DIR, 'templates/downloading/')),
+    ('downloading', os.path.join(FILEHANDLER_DIR, 'templates/FileHandler/downloading/')),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
