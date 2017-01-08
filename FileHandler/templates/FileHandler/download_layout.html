@@ -1,15 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        {% load static %}
         <script type='text/javascript'>
             document.addEventListener('DOMContentLoaded', function() {
                 $('#content').load("{% static 'advertising/advert.html' %}");
             });
-            setTimeout(function() {
+            /*setTimeout(function() {
                 $('#content').load('{% static "downloading/download.html" %}');
             }, 2000);
+            setTimeout(function() {
+                $('a').attr('href', 'localhost:8000/{{ url }}');
+                $('a').text('{{ file_name }}');
+            }, 1000);*/
         </script>
     </head>
     <body>
