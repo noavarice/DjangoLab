@@ -7,6 +7,7 @@ from django.db import models
 
 class Advertisement(models.Model):
     content = models.FileField(upload_to = settings.ADVERTISING_ROOT)
+    exposition_time = models.SmallIntegerField(default = 2)
 
     def __str__(self):
         return self.content.name
@@ -16,4 +17,4 @@ class FileHandler(models.Model):
     bound_advert = models.ForeignKey(Advertisement, default = 1, on_delete = models.CASCADE)
 
     def __str__(self):
-        return '%s, %s' % (self.file_to_store.name.split('/')[-1], Advertisement.objects.get(id = self.bound_advert).str().split('/')[-1])
+        return '%s, %s' % (self.file_to_store.name, str(self.id))
