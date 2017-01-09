@@ -33,7 +33,9 @@ def temporary_download_page(request):
     url = request.path.split('/')[-1]
     obj = get_object_or_404(FileHandler, pk = decode(url))
     full_filename = obj.file_to_store.name
-    with open(full_filename, 'rb') as f:
-        response = HttpResponse(f, content_type = 'application/force-download')
-        response['Content-Disposition'] = 'inline; filename="%s"' % os.path.basename(full_filename)
-        return response    
+    if os.path.exists(full_filename):
+        with open(full_filename, 'rb') as f:
+            response = HttpResponse(f, content_type = 'application/force-download')
+            response['Content-Disposition'] = 'inline; filename="%s"' % os.path.basename(full_filename)
+            return response    
+    return HttpResponseNotFound()
