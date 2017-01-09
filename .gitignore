@@ -37,6 +37,8 @@
 ehthumbs.db
 Thumbs.db
 
+# Binary and static project files #
 *.pyc
 files/*
 static/*
+FileHandler/templates/FileHandler/Advertising/*
