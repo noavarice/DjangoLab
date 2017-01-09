@@ -122,6 +122,8 @@ ADVERTISING_ROOT = os.path.join(FILEHANDLER_DIR, 'templates/FileHandler/Advertis
 
 CREATED_URL_MAX_LENGTH = 8
 
+MAX_FILE_PATH_LENGTH = 260
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 

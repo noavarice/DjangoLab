@@ -5,11 +5,11 @@
         <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type='text/javascript'>
             document.addEventListener('DOMContentLoaded', function() {
-                $('#content').load("{% static 'advertising/advert.html' %}");
+                $('#content').load("{% static 'advertising/'%}{{ advert }}");
+                setTimeout(function() {
+                    document.getElementById('content').innerHTML = "<h3>Download: <a href = '/{{ url }}'>{{ file_name }}</a></h3>";
+                }, {{ time }});
             });
-            setTimeout(function() {
-                document.getElementById('content').innerHTML = "<h3>Download: <a href = '/{{ url }}'>{{ file_name }}</a></h3>";
-            }, 2000);
         </script>
     </head>
     <body>
