@@ -129,7 +129,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     ('advertising', ADVERTISING_ROOT),
-    ('downloading', os.path.join(FILEHANDLER_DIR, 'templates/FileHandler/downloading')),
 )
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
