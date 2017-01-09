@@ -7,13 +7,9 @@
             document.addEventListener('DOMContentLoaded', function() {
                 $('#content').load("{% static 'advertising/advert.html' %}");
             });
-            /*setTimeout(function() {
-                $('#content').load('{% static "downloading/download.html" %}');
-            }, 2000);
             setTimeout(function() {
-                $('a').attr('href', 'localhost:8000/{{ url }}');
-                $('a').text('{{ file_name }}');
-            }, 1000);*/
+                document.getElementById('content').innerHTML = "<h3>Download: <a href = '/{{ url }}'>{{ file_name }}</a></h3>";
+            }, 2000);
         </script>
     </head>
     <body>
